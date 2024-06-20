@@ -7,8 +7,7 @@ var auto_rethrow = 60000;//重抛超时。超过此时间还没有钓到鱼则�
 var fishrod_distance = 25;//浮标落水点与鱼咬钩点之间的距离 小于此值便会收杆
 var afterthrow_timeout = 1000;//抛竿与浮标落水的时间差，即抛竿后该段时间内的实体落水事件会被认为是浮标入水。服务器tps较低时需调高。 (毫秒)
 var lookThrow_interval = 300;
-var AutoReconnect_Interval = 60 * 1000;
-let firstLogin = true;
+var AutoReconnect_Interval = 60*1000;
 
 class Do {
     static getDistance(x1, y1, z1, x2, y2, z2) {
@@ -32,7 +31,7 @@ class Player {
 
 let botArgs = {
     auth: 'microsoft',
-    host: 'mc.ledream.net',//'localhost',// 
+    host: 'mcledream.net',//'localhost',// 
     port: '',
     version: '1.20.1'
 }
@@ -95,17 +94,9 @@ class MCBot {
                 this.view = true;
                 mineflayerViewer.mineflayer(this.bot, { port: 3000 });
             } */
-            if (firstLogin) {
-                setTimeout(() => { this.bot.chat("\/sv"); }, 10 * 1000);
-                setTimeout(() => { this.bot.chat("\/warp dozingmoon"); }, 10 * 1000 + 1000);
-                setTimeout(() => { this.bot.chat("\/home witch"); }, 10 * 1000 + 1000);
-                firstLogin = false;
-            }
-            else {
-                setTimeout(() => { this.bot.chat("\/sv"); }, 10 * 60 * 1000);
-                setTimeout(() => { this.bot.chat("\/warp dozingmoon"); }, 10 * 60 * 1000 + 2000);
-                setTimeout(() => { this.bot.chat("\/home witch"); }, 10 * 60 * 1000 + 2000);
-            }
+            setTimeout(()=>{this.bot.chat("\/sv");},5*60*1000);
+            setTimeout(()=>{this.bot.chat("\/warp dozingmoon");},2000);
+            setTimeout(()=>{this.bot.chat("\/home witch");},2000);
 
             //Throw first rod at 3000ms
             setTimeout(() => {
